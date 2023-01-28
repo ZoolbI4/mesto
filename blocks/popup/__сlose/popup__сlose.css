@@ -1,6 +1,6 @@
 .popup__сlose {
     position: absolute;
-    background: transparent url(../../../images/popup/Close.svg) center center / cover no-repeat; 
+    background: transparent url(../../../images/popup/Close.svg) center center / cover no-repeat;
     transition: all 0.2s linear;
     width: 32px;
     height: 32px;
@@ -11,9 +11,9 @@
 }
 
 
-.popup__сlose:hover { 
-    opacity: 0.6; 
-    cursor: pointer; 
+.popup__сlose:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 
 

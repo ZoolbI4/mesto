@@ -1,7 +1,7 @@
 .element__like {
     width: 22px;
     height: 19px;
-    background: transparent url(../../../images/elements/like-disabled.svg); 
+    background: transparent url(../../../images/elements/like-disabled.svg);
     border-style: none;
     transition: all .2s ease;
 }
