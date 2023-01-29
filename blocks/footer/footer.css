@@ -4,10 +4,10 @@
     margin: 0 auto calc((100vw - 320px) / (1280 - 320) * (60 - 36) + 36px);
     padding-left: calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px);
   }
-  
+
   @media screen and (min-width: 1280px) {
     .footer {
-      width: 880px;
+      max-width: 880px;
       margin: 0 auto 60px;
     }
   }
