@@ -4,10 +4,10 @@
     padding-bottom: calc((100vw - 320px) / (1280 - 320) * (41 - 30) + 31px);
     border-bottom: 1px solid rgba(84, 84, 84, .7);
   }
-  
+
   @media screen and (min-width: 1280px) {
     .header {
-      width: 880px;
+      max-width: 880px;
       margin: 45px auto 0;
       padding-bottom: 41px;
     }
