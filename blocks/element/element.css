@@ -1,9 +1,10 @@
 .element {
-    max-width: 282px;
-    display: flex;
-    flex-direction: column;
-    background: #FFFFFF;
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 282px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #FFFFFF;
+  border-radius: 10px;
 }
