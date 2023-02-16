@@ -6,7 +6,7 @@ const profileProffesional = document.querySelector(".profile__subtitle");
 const popupEdit = document.querySelector('.popup_edit');
 const popupEditForm = document.forms["profileEdit"];
 const nameInput = popupEdit.querySelector ('[name="profileName"]');
-const proffesionalInput = popupEdit.querySelector ("#proffesional");
+const proffesionalInput = popupEdit.querySelector ('[name="profileProf"]');
 
 const popupAdd = document.querySelector('.popup_add');
 const popupAddForm = document.forms["profileAdd"];
@@ -20,17 +20,17 @@ const popupImage = document.querySelector('.popup_photos');
 const popupPhotosImage = document.querySelector('.popup__image');
 const popupImageCaption = popupImage.querySelector('.popup__figcaption');
 
-const popupEditClose = popupEdit.querySelector('.popup__close-btn');
-const popupAddClose = popupAdd.querySelector('.popup__close-btn');
-const popupImageClose = popupImage.querySelector('.popup__close-btn');
+const popups = Array.from(document.querySelectorAll('.popup'));
 
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
+  document.addEventListener('keydown', closePopupEscapeClick);
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
+  document.addEventListener('keydown', closePopupEscapeClick);
 }
 
 function openPopupEdit() {
@@ -92,14 +92,33 @@ function handleRemoveButtonClick(evt) {
   evt.target.closest('.element').remove();
 }
 
+
+function closePopupEscapeClick(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_open');
+    closePopup(popupOpened);
+  }
+}
+
+
+popups.forEach((element) => {
+  element.addEventListener('mousedown', function (evt) {
+    if (evt.target.classList.contains('popup_open')) {
+      closePopup(element);
+    }
+    if (evt.target.classList.contains('popup__close-btn')) {
+      closePopup(element);
+    }
+  });
+})
+
 profileEditOpen.addEventListener('click', openPopupEdit);
-popupEditClose.addEventListener('click', () => closePopup(popupEdit));
+
 popupEditForm.addEventListener('submit',  handleProfileFormSubmit);
 
 profileAddOpen.addEventListener('click', () => openPopup(popupAdd));
-popupAddClose .addEventListener('click', () => closePopup(popupAdd));
+
 popupAddForm.addEventListener('submit',  handleProfileCardSubmit);
 
-popupImageClose.addEventListener('click', () => closePopup(popupImage));
 
 
