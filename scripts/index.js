@@ -22,6 +22,10 @@ const popupImageCaption = popupImage.querySelector('.popup__figcaption');
 
 const popups = Array.from(document.querySelectorAll('.popup'));
 
+const inputList = Array.from(popupAddForm.querySelectorAll(`.${validationConfig.inputSelector}`));
+const buttonElement = popupAddForm.querySelector(`.${validationConfig.submitButtonSelector}`);
+
+const cardElement = cardTemplate.querySelector('.element');
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_open');
@@ -30,7 +34,7 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_open');
-  document.addEventListener('keydown', closePopupEscapeClick);
+  document.removeEventListener('keydown', closePopupEscapeClick);
 }
 
 function openPopupEdit() {
@@ -47,21 +51,21 @@ function handleProfileFormSubmit(evt) {
 }
 
 function createCard(card) {
-  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardsElementImage = cardElement.querySelector('.element__photo');
+  const clonCardElement = cardElement.cloneNode(true);
+  const cardsElementImage = clonCardElement.querySelector('.element__photo');
 
   cardsElementImage.src = card.link;
   cardsElementImage.alt = card.name;
-  cardElement.querySelector('.element__title').textContent = card.name;
+  clonCardElement.querySelector('.element__title').textContent = card.name;
 
   cardsElementImage.addEventListener('click', openPopupPhotos);
-  cardElement.querySelector('.element__like').addEventListener('click', handleLikeButtonClick);
-  cardElement.querySelector('.element__trash-button').addEventListener('click', handleRemoveButtonClick);
+  clonCardElement.querySelector('.element__like').addEventListener('click', handleLikeButtonClick);
+  clonCardElement.querySelector('.element__trash-button').addEventListener('click', handleRemoveButtonClick);
 
-  return cardElement;
+  return clonCardElement;
 }
 
-function handleProfileCardSubmit(evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   const cardElement = createCard({
     name: titleAddInput.value,
@@ -69,6 +73,7 @@ function handleProfileCardSubmit(evt) {
   });
   cardsContainer.prepend(cardElement);
   popupAddForm.reset();
+  toggleButtonState(inputList, buttonElement, validationConfig.inactiveButtonClass);
   closePopup(popupAdd);
 }
 
@@ -118,7 +123,7 @@ popupEditForm.addEventListener('submit',  handleProfileFormSubmit);
 
 profileAddOpen.addEventListener('click', () => openPopup(popupAdd));
 
-popupAddForm.addEventListener('submit',  handleProfileCardSubmit);
+popupAddForm.addEventListener('submit',  handleCardFormSubmit);
 
 
 
