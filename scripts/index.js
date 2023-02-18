@@ -22,8 +22,8 @@ const popupImageCaption = popupImage.querySelector('.popup__figcaption');
 
 const popups = Array.from(document.querySelectorAll('.popup'));
 
-const inputList = Array.from(popupAddForm.querySelectorAll(`.${validationConfig.inputSelector}`));
-const buttonElement = popupAddForm.querySelector(`.${validationConfig.submitButtonSelector}`);
+const cardFormInputList = Array.from(popupAddForm.querySelectorAll(`.${validationConfig.inputSelector}`));
+const cardFormSubmitButton = popupAddForm.querySelector(`.${validationConfig.submitButtonSelector}`);
 
 const cardElement = cardTemplate.querySelector('.element');
 
@@ -73,7 +73,7 @@ function handleCardFormSubmit(evt) {
   });
   cardsContainer.prepend(cardElement);
   popupAddForm.reset();
-  toggleButtonState(inputList, buttonElement, validationConfig.inactiveButtonClass);
+  toggleButtonState(cardFormInputList, cardFormSubmitButton, validationConfig.inactiveButtonClass);
   closePopup(popupAdd);
 }
 
