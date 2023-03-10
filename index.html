@@ -13,7 +13,7 @@
   <header class="header">
     <img class="header__logo" src="./images/header/logo.svg" alt="Логотип Место">
   </header>
-  <main>
+  <main class="content">
     <section class="profile">
       <img class="profile__avatar" src="./images/profile/avatar.png" alt="Фотография Жак-Ив Кусто">
       <div class="profile__info">
@@ -64,7 +64,7 @@
       <button class="popup__close-btn" type="button" title="Закрыть"></button>
     </div>
   </div>
-  <template class="card_template">
+  <template id="card-template">
     <li class="element">
       <img class="element__photo" src="." alt="">
       <button class="element__trash-button" type="button" title="Удалить"></button>
@@ -74,9 +74,7 @@
       </div>
     </li>
   </template>
-  <script src="./scripts/constants.js"></script>
-  <script src="./scripts/validate.js"></script>
-  <script src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/index.js"></script>
 </body>
 
 </html>
