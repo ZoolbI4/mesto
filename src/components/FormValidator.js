@@ -31,15 +31,23 @@ export default class FormValidator {
   _showInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     errorElement.textContent = inputElement.validationMessage;
-    errorElement.classList.add(this._classData.errorClass);
+    errorElement.classList.add(this._classData.activeErrorClass);
     inputElement.classList.add(this._classData.inputErrorClass);
   }
 
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-    errorElement.classList.remove(this._classData.errorClass);
-    errorElement.textContent = "";
+    errorElement.classList.remove(this._classData.activeErrorClass);
+    errorElement.textContent = '';
     inputElement.classList.remove(this._classData.inputErrorClass);
+  }
+
+  resetValidation() {
+    this.toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement)
+    });
   }
 
   toggleButtonState() {
@@ -58,3 +66,4 @@ export default class FormValidator {
     });
   }
 }
+
