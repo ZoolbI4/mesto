@@ -1,4 +1,4 @@
-.element__trash-button {
+.element__trash-btn {
   position: absolute;
   top: 18px;
   right: 15px;
@@ -11,7 +11,7 @@
   transition: all 0.2s linear;
 }
 
-.element__trash-button:hover {
+.element__trash-btn:hover {
   opacity: .6;
   cursor: pointer;
 }
