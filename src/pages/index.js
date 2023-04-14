@@ -33,7 +33,7 @@ const api = new Api({
   },
 });
 
- const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector, profileAvatarSelector });
+const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector, profileAvatarSelector });
 
 
 api.getPageNeedData().then((responses) => {
@@ -54,14 +54,14 @@ const cardsContainer = new Section({
 }, cardsContainerSelector);
 
 const popupUpdateAvatar = new PopupWithForm(popupUpdateAvatarSelector, (param) => {
-  popupUpdateAvatar.isLoadingMessage(true);
+  popupUpdateAvatar.isLoading(true);
   api.updateProfileAvatar({ avatar: param.url }).then((data) => {
     userInfo.setUserAvatar({ userAvatarLink: data.avatar });
     popupUpdateAvatar.close();
   }).catch((err) => {
     console.error(err);
   }).finally(() => {
-    popupUpdateAvatar.isLoadingMessage(false);
+    popupUpdateAvatar.isLoading(false);
   });
 });
 popupUpdateAvatar.setEventListener();
@@ -74,14 +74,14 @@ document.querySelector(profileAvatarEditButton).addEventListener('click', () => 
 
 
 const popupProfile = new PopupWithForm(popupProfileSelector, (param) => {
-  popupProfile.isLoadingMessage(true);
+  popupProfile.isLoading(true);
   api.updateUserInfo({ name: param.title, about: param.subtitle }).then((data) => {
     userInfo.setUserInfo({ userName: data.name, userDescription: data.about });
     popupProfile.close();
   }).catch((err) => {
     console.error(err);
   }).finally(() => {
-    popupProfile.isLoadingMessage(false);
+    popupProfile.isLoading(false);
   });
 });
 popupProfile.setEventListener();
@@ -90,7 +90,7 @@ popupProfileValidator.enableValidation();
 
 
 const popupNewPlace = new PopupWithForm(popupNewPlaceSelector, (param) => {
-  popupNewPlace.isLoadingMessage(true);
+  popupNewPlace.isLoading(true);
   const item = { name: param.name, link: param.url };
   api.addNewCard(item).then((newCardItem) => {
     const cardElement = createNewCard(newCardItem, cardSelector);
@@ -99,7 +99,7 @@ const popupNewPlace = new PopupWithForm(popupNewPlaceSelector, (param) => {
   }).catch((err) => {
     console.error(err);
   }).finally(() => {
-    popupNewPlace.isLoadingMessage(false);
+    popupNewPlace.isLoading(false);
   });
 });
 popupNewPlace.setEventListener();
@@ -141,14 +141,14 @@ function createNewCard(item, cardSelector) {
       if (card.isLiked) {
         api.deleteCardLike(card.getCardId()).then((data) => {
           card.unsetLike();
-          card.likesCounterUpdate(data.likes);
+          card.updateLikesCounter(data.likes);
         }).catch((err) => {
           console.error(err);
         });
       } else {
         api.addCardLike(card.getCardId()).then((data) => {
           card.setLike();
-          card.likesCounterUpdate(data.likes);
+          card.updateLikesCounter(data.likes);
         }).catch((err) => {
           console.error(err);
         });

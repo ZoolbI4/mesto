@@ -38,7 +38,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListener();
   }
 
-  isLoadingMessage(isLoading) {
+  isLoading(isLoading) {
     if (isLoading === true) {
       this._formElementSubmitButton.textContent = 'Сохранение...';
     } else {

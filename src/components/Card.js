@@ -27,13 +27,13 @@ export default class Card {
     this._cardsElementImage.addEventListener('click', () => this._handleCardClick());
   }
 
- generateCard() {
-  this._cardElement = this._getTemplateElement();
-  this._likeButton = this._cardElement.querySelector('.element__like-btn');
-  this._countLikeElement = this._cardElement.querySelector('.element__like-count');
-  this._cardsElementImage = this._cardElement.querySelector('.element__photo');
-  if (!this._isUserCard) {
-    this._cardElement.querySelector('.element__trash-btn').remove();
+  generateCard() {
+    this._cardElement = this._getTemplateElement();
+    this._likeButton = this._cardElement.querySelector('.element__like-btn');
+    this._countLikeElement = this._cardElement.querySelector('.element__like-count');
+    this._cardsElementImage = this._cardElement.querySelector('.element__photo');
+    if (!this._isUserCard) {
+      this._cardElement.querySelector('.element__trash-btn').remove();
     }
 
     this._cardsElementImage.src = this._imageLink;
@@ -65,7 +65,7 @@ export default class Card {
     this.isLiked = false;
   }
 
-  likesCounterUpdate(data) {
+  updateLikesCounter(data) {
     this._countLikeElement.textContent = data.length;
   }
 
